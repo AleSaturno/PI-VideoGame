@@ -24,10 +24,34 @@ const GetApiInfo = async () =>{
         return ({
             id: event.id,
             name: event.name,
-            image: e.background_image,
+            image: event.background_image,
+            rating: event.platforms.map(a => a.platforms.name),
+            released: event.released,
+            genres: event.genres.map(a => a.name)
         })
     })
+    return apiInfo
 }
+
+// GET Informacion del Archivo DB.js
+
+const getDbInfo = async () => {
+    return Videogame.findAll();
+};
+
+
+// GET ALL INFO
+
+const allInfo = async () => {
+    const infoApi = await GetApiInfo();
+    const infoDb = await getDbInfo();
+    const infoComplete = infoApi.concat(infoDb);
+    return infoComplete
+}
+
+
+
+
 
 
 module.exports = router;
