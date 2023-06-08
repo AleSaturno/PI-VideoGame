@@ -1,9 +1,17 @@
 import './App.css';
+import {Route, Routes} from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar'
+import Landing from './components/Landing/Landing'
 
-function App() {
+
+const App = () =>{
   return (
     <div className="App">
-      <h1>Henry Videogames</h1>
+      <Navbar/>
+
+      <Routes>
+        <Route path='/' element={<Landing/>}/>
+      </Routes>
     </div>
   );
 }
