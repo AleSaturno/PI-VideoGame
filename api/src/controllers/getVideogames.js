@@ -8,12 +8,13 @@ const getVideogames = async (req, res) => {
         // Se crea un arreglo, mientras se inserta los llamados de axios
         const promises = [];
         for (let i = 1; i < 6; i++){
-            let apiGet = await axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
+            let apiGet = axios(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
             promises.push(apiGet);
         };
 
         // Se le aplica la PromiseAll al arreglo de axios y se guarda el resultado mapeado en un nuevo array
-        promises = (await Promise.all(promises)).map(prom => prom.data.results.map(videogame => {
+        // .flat() une todo a un array
+        const videoGames = (await Promise.all(promises)).map(prom => prom.data.results.map(videogame => {
             return{
                 id: videogame.id,
                 name: videogame.name,
@@ -26,14 +27,10 @@ const getVideogames = async (req, res) => {
                 }),
 
             }
-        }))
-        // Para que quede un solo array, se crea una nueva variable con un array vacio y se le concatena cada uno de los arrays de las respuestas de la promesas.
-
-        const allVideogames = [];
-        promises.map(games => {allVideogames = allVideogames.concat(games)})
+        })).flat()
         // Ahora se traen los juegos que pueda tener la db y se los concaquetena con allVideogames
 
-        let dbVideogames = await Videogame.findAll({
+        const dbVideogames = await Videogame.findAll({
             attributes:['id', 'name' , 'background_image' , 'rating'],
             include: [{
                 model: Genre,
@@ -43,10 +40,11 @@ const getVideogames = async (req, res) => {
                 }
             }]
         })
-        const respuesta = [...dbVideogames, ...allVideogames]
+        const respuesta = [...dbVideogames, ...videoGames]
         res.status(200).json(respuesta)
 
     } catch (error) {
+        console.log(error);
         res.status(400).send(error.message);
     }
 };
