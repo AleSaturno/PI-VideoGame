@@ -1,53 +1,48 @@
 const { DataTypes } = require('sequelize');
+const { v4: uuidv4 } = require('uuid');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('videogame', {
-
-    id:{
+    id: {
       type: DataTypes.UUID,
-      defaulValue: DataTypes.UUIDV4,
-      allowNullValue: false,
-      primaryKey: true
+      primaryKey: true,
+      allowNull: true,
+      defaultValue: () => uuidv4(),
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    description:{
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    platforms: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    released:{
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-
-    rating:{
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-
-    plataforms:{
-      type: DataTypes.ARRAY(DataTypes.STRING),
+    released: {
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
-
-    image:{
+    background_image: {
       type: DataTypes.STRING,
+      defaultValue: "https://serviciopad.es/wp-content/uploads/estudio-revela-que-estadounidenses-gastan-cada-vez-mas-en-videojuegos-02-e1445888221548.jpeg",
       allowNull: true,
+      validate: {
+        isUrl: true
+      }
     },
-
-    createdInDb: {
-      type: DataTypes.BOOLEAN,
+    rating: {
+      type: DataTypes.FLOAT,
       allowNull: false,
-      defaultValue: true,
-    },
-    
+      validate: {
+        max: 5
+      }
+    }
   },{
-    timestamps: false
+    timestamps: false,
   });
 };
