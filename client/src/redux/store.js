@@ -5,7 +5,8 @@ import thunkMiddleware from 'redux-thunk'
 
 const composeEnhacer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
 
-export const store = createStore(
+const store = createStore(
     reducer,
     composeEnhacer(applyMiddleware(thunkMiddleware))); // Esta linea nos permite hacer peticiones a un servidor
 
+export default store;
