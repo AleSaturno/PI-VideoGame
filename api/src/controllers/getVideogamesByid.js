@@ -12,7 +12,7 @@ const getVideogamesById = async(req , res) =>{
             const games = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
             res.status(200).json(games.data);
         }else{
-            const games = await Videogame.findByPk(id,{
+            const game = await Videogame.findByPk(id,{
                 include: [{
                     model:Genre,
                     attributes: ['name'],
@@ -21,8 +21,8 @@ const getVideogamesById = async(req , res) =>{
                     }
                 }]
             });
-            console.log(games);
-            res.status(200).json(games);
+            console.log(game);
+            res.status(200).json(game);
         }
     } catch (error) {
         res.status(400).send(error.message)
