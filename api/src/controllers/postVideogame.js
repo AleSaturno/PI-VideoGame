@@ -10,7 +10,6 @@ const postVideogame = async (req , res) =>{
         res.status(200).json(dbGames)
     } catch (error) {
         res.status(400).send(error.message)
-        
     }
 }
 
