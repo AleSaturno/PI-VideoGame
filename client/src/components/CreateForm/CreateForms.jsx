@@ -7,3 +7,5 @@ const CreateForms = () =>{
         </div>
     )
 }
+
+export default CreateForms;
