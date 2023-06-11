@@ -1,32 +1,26 @@
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import Cards from '../Cards/Cards';
 
+const Home = () => {
+  const allGames = useSelector((state) => state.allGames);
+  const gamesByName = useSelector((state) => state.gamesByname);
 
-const Home = () =>{
+  const [games, setGames] = useState([]);
 
-    const allGames = useSelector(state => state.allGames);
-    const gamesByName = useSelector(state => state.gamesByName);
+  useEffect(() => {
+    if (gamesByName.length) {
+      setGames(gamesByName);
+    } else if (allGames.length) {
+      setGames(allGames);
+    }
+  }, [allGames, gamesByName]);
 
-
-    const [games , setGames] = useState([]);
-
-    useEffect(() =>{
-        if(gamesByName.length){
-            setGames(gamesByName)
-        }else if(allGames.length){
-            setGames(allGames)
-        }
-    }, [allGames, gamesByName])
-
-
-
-    return(
-        <div>
-            <Cards games = {games}/>
-        </div>
-    )
-}
-
+  return (
+    <div>
+      <Cards games={games} />
+    </div>
+  );
+};
 
 export default Home;
