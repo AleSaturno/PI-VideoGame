@@ -1,7 +1,5 @@
 import './App.css';
-
-
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, useLocation} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar'
 import Landing from './components/Landing/Landing'
 import Home from './components/Home/Home'
@@ -10,19 +8,20 @@ import CreateForms from './components/CreateForm/CreateForms';
 
 
 const App = () =>{
+  const location = useLocation();
 
   return (
     
     <div className="App">
       
-         <Navbar/>
-
+      {location.pathname !== '/' && <Navbar />}
+      
+      
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='createForm' element={<CreateForms/>}/>
-        
       </Routes>
     </div>
   );
