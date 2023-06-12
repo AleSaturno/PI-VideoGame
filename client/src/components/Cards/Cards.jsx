@@ -15,7 +15,7 @@ const Cards = ({ games }) => {
     genres: game.genres.map((genre) => genre.name).join(', '),
   }));
 
-  let message = 'Cargando';
+  let message = 'Cargando...';
   const buttons = [];
 
   const handlePage = (event) => {
