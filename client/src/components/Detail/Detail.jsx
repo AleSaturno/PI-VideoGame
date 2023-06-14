@@ -23,8 +23,8 @@ const Detail = () => {
           <img src={gameDetail.background_image} width="600px" height="auto" alt="Loading..." />
           <h2>Genres: {gameDetail.genres.map(genre => genre.name).join(', ')}</h2>
           <h2>Rating: {gameDetail.rating}</h2>
-          {gameDetail.platforms && gameDetail.platforms.length > 0 && (
-            <h2>Platforms: {gameDetail.platforms.map(platform => platform.platform.name).join(', ')}</h2>
+          {gameDetail.platforms && Array.isArray(gameDetail.platforms) && gameDetail.platforms.length > 0 && (
+            <h2>Platforms: {gameDetail.platforms.map(platform => platform.platform.name).join(' ,  ')}</h2>
           )}
           <h2>Released: {gameDetail.released}</h2>
           <h3>Description: {parser(gameDetail.description)}</h3>
@@ -41,3 +41,4 @@ const Detail = () => {
 };
 
 export default Detail;
+
