@@ -44,7 +44,6 @@ const getVideogames = async (req, res) => {
         res.status(200).json(respuesta)
 
     } catch (error) {
-        console.log(error);
         res.status(400).send(error.message);
     }
 };
