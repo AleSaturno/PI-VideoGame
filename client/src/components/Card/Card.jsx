@@ -7,7 +7,7 @@ const Card = ({game}) =>{
         <div>
            <h1>{game.name}</h1>
            <h2>Genres: {game.genres}</h2>
-           <img src={game.background_image} alt="Cargando..." />
+           <img src={game.background_image}  width="400px" height="auto" alt="Cargando..." />
         </div>        
         </Link>
     )
