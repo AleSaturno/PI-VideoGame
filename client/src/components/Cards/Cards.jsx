@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../Card/Card';
+import style from './Cards.module.css'
 
 const Cards = ({ games }) => {
   const [page, setPage] = useState(0);
@@ -97,14 +98,16 @@ const Cards = ({ games }) => {
 
   return (
     <>
-      <div className='filter'>
+
+    <div className={style.container}>
+      <div className={style.filtergenre}>
         {genres.map((genre) => (
           <button value={genre.name} onClick={handleFilterByGenre} key={genre.id}>
             {genre.name}
           </button>
         ))}
       </div>
-      <div className='filter'>
+      <div className={style.filter}>
         <button onClick={handleFilterByOrg} value='api'>
           Site Games
         </button>
@@ -127,22 +130,25 @@ const Cards = ({ games }) => {
           &dArr; Rating
         </button>
       </div>
-      <div className='pagination'>
-        {page > 0 && <button onClick={handlePagePrev}>&lArr;</button>}
-        {buttons.map((button, i) => (
-          <button value={i} onClick={handlePage} key={i}>
-            {button}
-          </button>
-        ))}
-        {page < allGames.length - 15 && <button onClick={handlePageNext}>&rArr;</button>}
-      </div>
-      <div className='cards'>
+    </div>
+    
+      <div className={style.pagination}>
+          {page > 0 && <button onClick={handlePagePrev}>&lArr;</button>}
+          {buttons.map((button, i) => (
+            <button value={i} onClick={handlePage} key={i}>
+              {button}
+            </button>
+          ))}
+          {page < allGames.length - 15 && <button onClick={handlePageNext}>&rArr;</button>}
+        </div>   
+      <div className={style.cards}>
         {allGames.length ? (
           allGames.slice(page, page + 15).map((game, i) => <Card game={game} key={i} />)
         ) : (
           <p>{message}</p>
         )}
       </div>
+     
     </>
   );
 };
