@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import parser from 'html-react-parser';
+import style from './Detail.module.css'
 
 const Detail = () => {
   const { id } = useParams();
@@ -17,10 +18,10 @@ const Detail = () => {
 
   if (gameDetail.description) {
     return (
-      <div>
-        <div>
+      <div className={style.container}>
+        <div className={style.contenido}>
           <h1>{gameDetail.name}</h1>
-          <img src={gameDetail.background_image} width="600px" height="auto" alt="Loading..." />
+          <img src={gameDetail.background_image}  alt="Loading..." />
           <h2>Genres: {gameDetail.genres.map(genre => genre.name).join(', ')}</h2>
           <h2>Rating: {gameDetail.rating}</h2>
           {gameDetail.platforms && Array.isArray(gameDetail.platforms) && gameDetail.platforms.length > 0 && (
