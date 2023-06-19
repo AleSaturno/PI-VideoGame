@@ -1,0 +1,44 @@
+.container{
+    background-color: rgba(0, 0, 0, 0.767);
+    background-repeat: no-repeat;
+    background-size: 210vh;
+    background-position: center center;
+    border: 2px solid black;
+    backdrop-filter: blur(5px);
+    
+}
+
+
+.container .contenido img{
+ 
+    right: 25px;
+    width: 400px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 1em;
+}
+
+
+.container .contenido h1{
+    align-items: center;
+    border: 3px solid blue;
+    width: 500px;
+}
+
+.container .contenido h2{
+    background-color: rgba(245, 245, 220, 0.5);
+    backdrop-filter: blur(5px);
+    width: 500px;
+    text-align: center;
+    font-size: 18px;
+    border: 3px solid red;
+}
+
+
+.container .contenido h3{
+    background-color: rgba(245, 245, 220, 0.5);
+    text-align: center;
+    font-size: 18px;
+    border: 3px solid red;
+}
+
