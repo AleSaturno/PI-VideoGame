@@ -97,40 +97,40 @@ const Cards = ({ games }) => {
   }
 
   return (
-    <>
+    <div>
 
-    <div className={style.container}>
-      <div className={style.filtergenre}>
-        {genres.map((genre) => (
-          <button value={genre.name} onClick={handleFilterByGenre} key={genre.id}>
-            {genre.name}
+      <div className={style.container}>
+        <div className={style.filtergenre}>
+          {genres.map((genre) => (
+            <button value={genre.name} onClick={handleFilterByGenre} key={genre.id}>
+              {genre.name}
+            </button>
+          ))}
+        </div>
+        <div className={style.filter}>
+          <button onClick={handleFilterByOrg} value='api'>
+            Site Games
           </button>
-        ))}
+          <button onClick={handleFilterByOrg} value='db'>
+            Users Games
+          </button>
+          <button onClick={handleFilterByOrg} value='all'>
+            All Games
+          </button>
+          <button onClick={handleOrderAlf} value='A-Z'>
+            &uArr;&dArr; A-Z
+          </button>
+          <button onClick={handleOrderAlf} value='Z-A'>
+            &uArr;&dArr; Z-A
+          </button>
+          <button onClick={handleOrderRtg} value='Ascending'>
+            &uArr; Rating
+          </button>
+          <button onClick={handleOrderRtg} value='Descending'>
+            &dArr; Rating
+          </button>
+        </div>
       </div>
-      <div className={style.filter}>
-        <button onClick={handleFilterByOrg} value='api'>
-          Site Games
-        </button>
-        <button onClick={handleFilterByOrg} value='db'>
-          Users Games
-        </button>
-        <button onClick={handleFilterByOrg} value='all'>
-          All Games
-        </button>
-        <button onClick={handleOrderAlf} value='A-Z'>
-          &uArr;&dArr; A-Z
-        </button>
-        <button onClick={handleOrderAlf} value='Z-A'>
-          &uArr;&dArr; Z-A
-        </button>
-        <button onClick={handleOrderRtg} value='Ascending'>
-          &uArr; Rating
-        </button>
-        <button onClick={handleOrderRtg} value='Descending'>
-          &dArr; Rating
-        </button>
-      </div>
-    </div>
     
       <div className={style.pagination}>
           {page > 0 && <button onClick={handlePagePrev}>&lArr;</button>}
@@ -149,7 +149,7 @@ const Cards = ({ games }) => {
         )}
       </div>
      
-    </>
+    </div>
   );
 };
 
