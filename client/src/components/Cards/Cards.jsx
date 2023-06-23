@@ -1,20 +1,34 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from '../Card/Card';
 import style from './Cards.module.css'
+import { byAll } from '../../redux/actions';
 
-const Cards = ({ games }) => {
-  const [page, setPage] = useState(0);
+
+const Cards = ({ games, page, setPage }) => {
+  // const [page, setPage] = useState(0);
   const [genre, setGenre] = useState('');
   const [orderAlf, setOrderAlf] = useState('');
   const [orderRtg, setOrderRtg] = useState('');
   const [origin, setOrigin] = useState('');
+  // const [allGames , setAllGames] = useState('');
   const genres = useSelector((state) => state.genres);
+  const copyAllGames = useSelector((state) => state.copyAllGames);
+  const dispatch = useDispatch();
+
+
+  // useEffect(()=>{
+    
+  //   setAllGames(Games)
+  //   console.log( games);
+  // }, [])
 
   let allGames = games.map((game) => ({
     ...game,
     genres: game.genres.map((genre) => genre.name).join(', '),
   }));
+
+  
 
   let message = 'Cargando...';
   const buttons = [];
@@ -41,6 +55,12 @@ const Cards = ({ games }) => {
     setPage(0);
   };
 
+  const handleGameAll = () => {
+    dispatch(byAll())
+    setOrigin('all')
+ 
+  }
+
   const handleOrderAlf = (event) => {
     setOrderAlf(event.target.value);
     setOrderRtg('');
@@ -52,8 +72,13 @@ const Cards = ({ games }) => {
   };
 
   if (genre !== '') {
-    allGames = allGames.filter((game) => game.genres.includes(genre));
-    if (!allGames.length) message = 'No hay juegos con ese género.';
+    if(genre === 'all') {
+      allGames = [...copyAllGames]
+    }
+    else{
+      allGames = allGames.filter((game) => game.genres.includes(genre));
+      if (!allGames.length) message = 'No hay juegos con ese género.';
+    }
   }
 
   if (origin === 'api') {
@@ -66,9 +91,11 @@ const Cards = ({ games }) => {
   }
 
   if (origin === 'all') {
-    allGames = games;
+    allGames = []
+    allGames.push(...copyAllGames)
     setOrigin('');
     if (!genre.length) setGenre('');
+    
   }
 
   for (let i = 1; i <= Math.ceil(allGames.length / 15); i++) {
@@ -96,9 +123,11 @@ const Cards = ({ games }) => {
     allGames.sort((x, y) => y.rating - x.rating);
   }
 
+  
+
   return (
     <div>
-
+     
       <div className={style.container}>
         <div className={style.filtergenre}>
           {genres.map((genre) => (
@@ -111,12 +140,12 @@ const Cards = ({ games }) => {
           <button onClick={handleFilterByOrg} value='api'>
             Site Games
           </button>
-          <button onClick={handleFilterByOrg} value='db'>
+          {/* <button onClick={handleFilterByOrg} value='db'>
             Users Games
-          </button>
-          <button onClick={handleFilterByOrg} value='all'>
+          </button> */}
+          {/* <button onClick={handleGameAll} value='all'>
             All Games
-          </button>
+          </button> */}
           <button onClick={handleOrderAlf} value='A-Z'>
             &uArr;&dArr; A-Z
           </button>
@@ -130,7 +159,9 @@ const Cards = ({ games }) => {
             &dArr; Rating
           </button>
         </div>
-      </div>
+      </div> 
+     
+      
     
       <div className={style.pagination}>
           {page > 0 && <button onClick={handlePagePrev}>&lArr;</button>}
@@ -140,7 +171,8 @@ const Cards = ({ games }) => {
             </button>
           ))}
           {page < allGames.length - 15 && <button onClick={handlePageNext}>&rArr;</button>}
-        </div>   
+        </div>
+
       <div className={style.cards}>
         {allGames.length ? (
           allGames.slice(page, page + 15).map((game, i) => <Card game={game} key={i} />)
