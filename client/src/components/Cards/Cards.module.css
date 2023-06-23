@@ -1,4 +1,4 @@
-.container{
+/* .container{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -6,8 +6,43 @@
     height: auto;
     float: left;
     background-color: rgba(0, 0, 0, 0.397);
-}
+} */
 
 .pagination{
     margin: 6px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filtergenre {
+  margin-bottom: 10px;
+}
+
+.filtergenre button {
+  margin-right: 5px;
+}
+
+.filter button {
+  margin-right: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e6e6e6;
+}
+
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
