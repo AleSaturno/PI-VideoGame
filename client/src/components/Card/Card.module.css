@@ -1,29 +1,31 @@
 *{
     text-decoration: none;
+
 }
 
 .container2{
-    display: flex;
-    flex-direction: column;
-    align-items: center center ;
-    margin-left: 25vw; 
-    float: center;
+    display:flexbox;
+    flex-direction:row;
+    margin-left: 8vw; 
+    
     
     
 }
 
 .container2 .imagen img{
     margin-bottom: 150px;
-    width: 400px;
-    height: auto;
+    width: 250px;
+    
+    
 }
 
 .container2 h1{
     color: black;
+    font-size: 18px;
    
 }
 
 .container2 h2{
     color: black;
-     
+    font-size: 15px;
 }
