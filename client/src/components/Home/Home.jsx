@@ -1,12 +1,15 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import Cards from '../Cards/Cards';
+import style from './Home.module.css'
 
-const Home = () => {
+
+const Home = ({page, setPage}) => {
   const allGames = useSelector((state) => state.allGames);
   const gamesByName = useSelector((state) => state.gamesByname);
 
   const [games, setGames] = useState([]);
+
 
   useEffect(() => {
     if (gamesByName.length) {
@@ -16,9 +19,12 @@ const Home = () => {
     }
   }, [allGames, gamesByName]);
 
+  
+ 
+
   return (
-    <div>
-      <Cards games={games} />
+    <div className= {style.container}>
+      <Cards games={games} page={page} setPage={setPage} />
     </div>
   );
 };
