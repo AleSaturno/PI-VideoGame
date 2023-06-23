@@ -3,6 +3,7 @@ import axios from 'axios';
 export const GET_ALLGAMES = 'GET_ALLGAMES';
 export const GET_GENRES = 'GET_GENRES';
 export const GET_GAMESBYNAME = 'GET_GAMESBYNAME';
+export const GET_BYALL = 'GET_BYALL';
 
 export const url = 'http://localhost:3001';
 
@@ -38,3 +39,13 @@ export const getGenres = () => {
     });
   };
 };
+
+export const byAll = () =>{
+  return  {
+      type: GET_BYALL,
+      payload: {}
+    }
+         
+}
+
+
