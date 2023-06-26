@@ -16,7 +16,7 @@ const getVideogameByName = async (req, res , next) =>{
                     [Op.iLike]: `%${name}$`
                 }
             },
-            attributes: ['id' , 'name' , 'background_image'],
+            attributes: ['id' , 'name' ,'platforms', 'background_image', ],
             include: [{
                 model: Genre,
                 attributes: ['name'],
