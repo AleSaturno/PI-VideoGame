@@ -17,6 +17,11 @@ const getVideogames = async (req, res) => {
                 name: videogame.name,
                 background_image: videogame.background_image,
                 rating: videogame.rating,
+                Platforms: videogame.platforms.map(platform =>{
+                    return{
+                        name:platform.name
+                    }
+                }),
                 genres: videogame.genres.map(genres =>{
                     return{
                         name: genres.name,
@@ -27,7 +32,7 @@ const getVideogames = async (req, res) => {
         })).flat()
         
         const dbVideogames = await Videogame.findAll({
-            attributes:['id', 'name' , 'background_image' , 'rating'],
+            attributes:['id', 'name' , 'background_image' , 'rating' , 'platforms'],
             include: [{
                 model: Genre,
                 attributes: ['name'],
