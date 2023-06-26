@@ -6,7 +6,6 @@ const {API_KEY} = process.env
 const getVideogamesById = async(req , res) =>{
 
     try {
-        // Si el id llega por props es un numero , lo busco en la API. Si no, los busca en DB
         const {id} = req.params;
         if(!isNaN(id)){
             const games = await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
