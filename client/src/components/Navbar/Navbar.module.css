@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(156, 156, 156);
-    backdrop-filter: blur(3px);
-    border: 1px solid purple;
-    
-    box-shadow: 0.5px 1px 7px rgb(23, 0, 128);
+    background: linear-gradient(to right, #000000 60%, #0082ad 200%);
+    color: #fff;
+    border: 3px solid #980101;
+    border-radius: 1px;
+    margin-bottom: 10px;
 }
 
 .botones {
@@ -17,7 +17,7 @@
 .Link{
     padding: 8px;
     height: 60%;
-    background-color: rgba(90, 2, 90, 0.911);
+    background: linear-gradient(to right, #000000 5%, #980101 75%);
     border: 2.5px solid #000;
     border-radius: .5em;
     font-size: 16px;
@@ -34,9 +34,7 @@
     cursor: pointer
 }
 
-.Link:hover{
-    background-color: aqua;
-}
+
     
 .custom{
     border-radius: 6em;
