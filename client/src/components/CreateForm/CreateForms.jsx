@@ -13,7 +13,7 @@ const CreateForm = () => {
     released: "",
     background_image: "",
     rating: "",
-    platforms: "",
+    platforms: [],
     genres: [],
   });
 
