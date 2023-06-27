@@ -152,12 +152,13 @@ const Cards = ({ games, page, setPage }) => {
           <button onClick={handleOrderAlf} value='Z-A'>
             &uArr;&dArr; Z-A
           </button>
-          <button onClick={handleOrderRtg} value='Ascending'>
+          <button onClick={handleOrderRtg} value='Descending'>
             &uArr; Rating
           </button>
-          <button onClick={handleOrderRtg} value='Descending'>
+          <button onClick={handleOrderRtg} value='Ascending'>
             &dArr; Rating
           </button>
+          
         </div>
       </div> 
      
@@ -180,6 +181,15 @@ const Cards = ({ games, page, setPage }) => {
           <p>{message}</p>
         )}
       </div>
+      <div className={style.pagination}>
+          {page > 0 && <button onClick={handlePagePrev}>&lArr;</button>}
+          {buttons.map((button, i) => (
+            <button value={i} onClick={handlePage} key={i}>
+              {button}
+            </button>
+          ))}
+          {page < allGames.length - 15 && <button onClick={handlePageNext}>&rArr;</button>}
+        </div>
      
     </div>
   );
