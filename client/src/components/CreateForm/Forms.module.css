@@ -1,5 +1,5 @@
 .master {
-  background-image: url('./Page.jpg');
+  background: linear-gradient(to right, #000000 60%, #0082ad 200%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -41,16 +41,13 @@ label {
   border-radius: 4px;
 }
 
-.genres {
-  margin-bottom: 15px;
-}
 
-.genreButton {
-  margin-right: 5px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
+
+.genres Button {
+  margin: 2px;
+  padding: 5px;
+ 
   border-radius: 4px;
-  background-color: white;
   color: black;
   cursor: pointer;
 }
