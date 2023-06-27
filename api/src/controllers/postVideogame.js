@@ -7,7 +7,7 @@ const postVideogame = async (req, res) => {
     const dbGames = await Videogame.findAll({
       where: { name: req.body.name },
     });
-    res.status(200).json(dbGames);
+    res.status(201).json(dbGames);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
