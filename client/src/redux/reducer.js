@@ -4,7 +4,7 @@ const initialState = {
   allGames: [],
   gamesByname: [],
   genres: [],
-  copyAllGames: []
+  copyAllGames: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,28 +13,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allGames: action.payload,
-        copyAllGames: action.payload
+        copyAllGames: action.payload,
       };
     case GET_GAMESBYNAME:
       return {
         ...state,
-        gamesByname: action.payload
+        gamesByname: action.payload,
       };
     case GET_GENRES:
       return {
         ...state,
-        genres: action.payload
+        genres: action.payload,
       };
-
     case GET_BYALL:
       return {
         ...state,
-        allGames: {...state.copyAllGames}
-      }; 
+        allGames: action.payload,
+        copyAllGames: action.payload,
+      };
     default:
       return state;
-
   }
 };
 
 export default reducer;
+
