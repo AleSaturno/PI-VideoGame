@@ -27,7 +27,7 @@ const NavBar = ({setPage}) => {
 
   return (
     <div className={style.nav}>
-      <h1>VideoGames App</h1>
+      <h1> Game World</h1>
       <div className={style.botones}>
         <button onClick={handleHomeButtonClick} className={style.Link}>
           <Link to='/home'>Home</Link>
