@@ -20,7 +20,6 @@ const getVideogamesById = async(req , res) =>{
                     }
                 }]
             });
-            console.log(game);
             res.status(200).json(game);
         }
     } catch (error) {
