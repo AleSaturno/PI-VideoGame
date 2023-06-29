@@ -64,6 +64,7 @@ const CreateForm = () => {
       ...gameData,
       rating: parseInt(gameData.rating),
       genres: gameData.genres.map((genre) => parseInt(genre)),
+      
     };
 
     if (game.background_image && !game.background_image.length) {
